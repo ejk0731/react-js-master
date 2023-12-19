@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bascis of React</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+  /* 1. WHY do we use React JS? 
+    - to update our html when it needs to be updated */
+  /* 2. createElement
+        tag
+        property - id, class... */
+  /* 3. ReactDOM 작성시 대소문자 구분 */
+  
+  const root = document.getElementById("root");
+  const span = React.createElement(
+    "h3", 
+    {
+      id: "hot-span", 
+      style: {color: "red"}, 
+      onMouseEnter:() => console.log("Mouse Enter")
+    }, 
+    "Hello! I'm a span"
+  );
+  // ReactDOM.render(span, root);
+
+  const btn = React.createElement(
+    "button", 
+    {
+    onClick:() => console.log("I'm clicked")
+    }, 
+    "Click me!"
+  );
+  const div = React.createElement("div", null, [span, btn])
+  ReactDOM.render(div, root);
+</script>
+</html>
