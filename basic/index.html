@@ -17,27 +17,22 @@
         tag
         property - id, class... */
   /* 3. ReactDOM 작성시 대소문자 구분 */
+  /* 4. React Js - interactive power house
+        React DOM - React element to HTML
+  */
   
   const root = document.getElementById("root");
-  const span = React.createElement(
-    "h3", 
-    {
-      id: "hot-span", 
-      style: {color: "red"}, 
-      onMouseEnter:() => console.log("Mouse Enter")
-    }, 
-    "Hello! I'm a span"
-  );
-  // ReactDOM.render(span, root);
-
-  const btn = React.createElement(
-    "button", 
-    {
-    onClick:() => console.log("I'm clicked")
-    }, 
-    "Click me!"
-  );
-  const div = React.createElement("div", null, [span, btn])
-  ReactDOM.render(div, root);
+  const h3 = React.createElement("h3", {
+    onMouseEnter: () => console.log("mouse enter"),
+    style: {
+      backgroundColor: "tomato"
+    }
+  }, "Hello! I'm a h3");
+  const button = React.createElement("button", {
+    onClick: () => console.log("i'm clicked")
+  }, "Click me");
+  const container = React.createElement("div", null, [h3, button]);
+  
+   ReactDOM.render(container, root);
 </script>
 </html>
