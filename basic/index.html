@@ -12,36 +12,32 @@
 <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-  /* 1. WHY do we use React JS? 
-    - to update our html when it needs to be updated */
-  /* 2. createElement
-        tag
-        property - id, class... */
-  /* 3. ReactDOM 작성시 대소문자 구분 */
-  /* 4. React Js - interactive power house
-        React DOM - React element to HTML
-  */
-  /* 5. JSX
-        similar to HTML
-        use Babel to transform 
-        
-        *** Babel - code transformer
-            https://babeljs.io/setup#installation
-            babel transform it and put it in <head> tag
-
-        First letter of your Component should be Uppercase
-        If it's lowercase, HTML and JSX will think it as a HTML Tag
+  /* State */
+  /* 1. reRendering - whenever the data changes, it updates UI
+        we need to rerender where data changes
   */
   
   const root = document.getElementById("root");
-  function Title () {
-    return (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello! I'm a h3</h3>
-    )
-  } 
-  const Button = () =>  <button style={{backgroundColor: "tomato"}} onClick={() => console.log("i'm clicked")}>Click me</button>
-  const Container = () => <div><Title /> <Button /></div>
+  let counter = 0;
   
-  ReactDOM.render(<Container />, root);
+  function countUp() {
+    counter = counter + 1;
+    console.log(counter)
+    render();
+  }
+  
+  function render() {
+    ReactDOM.render(<Container />, root);
+  }
+  
+  const Container = () => (
+    <div>
+      <h3>Total Click: {counter}</h3>
+      <button onClick={countUp}>Click me</button>
+    </div>
+  )
+
+  render();
+  
 </script>
 </html>
