@@ -17,23 +17,38 @@
         we need to re-render where data changes
         useState function include re-rendering
   */
-  
-  const root = document.getElementById("root");
-  let counter = 0;
+  /* 
+    development -> html 태그 사용시 에러 발생 o
+    production -> minifiy 되어 html 태그를 사용하여도 에러 발생 x
+
+    for => htmlFor
+    class => className
+
+    event
+    event.target.value
+  */
+
   
   function App() {
-    let [counter, setCounter] = React.useState(0);
-    const onClick = () => {
-      // setCounter(counter + 1)
-      setCounter((current) => current + 1)
+    const [minutes, setMinutes] = React.useState();
+    const onChange = (event) => {
+      setMinutes(event.target.value)
     }
-    console.log("rendered")
-    console.log(counter);
+    const reset = () => setMinutes(0)
     
     return (
       <div>
-        <h3>Total Click: {counter}</h3>
-        <button onClick={onClick}>Click me</button>
+        <h1>Super Converter</h1>
+        <div>
+          <label htmlFor="minutes"></label>
+          <input value={minutes} id="minutes" type="number" placeholder="Minutes" onChange={onChange} />  
+        </div>
+        <div>
+          <label htmlFor="hours"></label>
+          <input value={Math.round(minutes / 60)} id="" type="number" placeholder="Hours" />
+        </div>
+        <h4>You want to convert {minutes} into</h4>
+        <button onClick={reset}>Reset</button>
       </div>
     )
   } 
