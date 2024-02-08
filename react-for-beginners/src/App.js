@@ -1,43 +1,33 @@
 import { useEffect, useState } from "react";
 
+function Hello() {
+  /* 1. function - 보통은 헤당 방법으로 사용하지 않음 */
+  function byFn() {
+    console.log("bye :(");
+  }
+  function hiFn() {
+    console.log("created :)");
+    return byFn;
+  }
+  useEffect(hiFn, []);
+ 
+  /* 2. 익명 함수 - 해당 방법으로 자주 사용됨 */
+  // useEffect(() => {
+  //   console.log("Created :)");
+  //   return () => console.log("destroyed :(")
+  // }, [])
+  return <h1>Hello!</h1>
+}
+
 function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  
+  const [showing, setShowing] = useState();
   const onClick = () => {
-    setCounter((prev) => prev + 1);
-  };
-
-  const onChange = (event) => {
-    setKeyword(event.target.value);
-  };
-
-  useEffect(() => {
-    console.log("i run only once");
-  }, []);
-
-  useEffect(() => {
-    console.log("i run when 'keyword' changes.")
-  }, [keyword]);
-
-  useEffect(() => {
-    console.log("i run when 'counter' changes.")
-  }, [counter]);
-
-  useEffect(() => {
-    console.log("i run when 'keyword & counter' changes.")
-  }, [keyword, counter]);
-
+    setShowing((prev) => !prev) 
+  }
   return (
-    <div className="App">
-      <input
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="Search here..."
-      />
-      <p>{counter}</p>
-      <button onClick={onClick}>Click Me!</button>
+    <div>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show" }</button>
     </div>
   );
 }
