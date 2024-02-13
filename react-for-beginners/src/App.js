@@ -1,33 +1,39 @@
-import { useEffect, useState } from "react";
-
-function Hello() {
-  /* 1. function - 보통은 헤당 방법으로 사용하지 않음 */
-  function byFn() {
-    console.log("bye :(");
-  }
-  function hiFn() {
-    console.log("created :)");
-    return byFn;
-  }
-  useEffect(hiFn, []);
- 
-  /* 2. 익명 함수 - 해당 방법으로 자주 사용됨 */
-  // useEffect(() => {
-  //   console.log("Created :)");
-  //   return () => console.log("destroyed :(")
-  // }, [])
-  return <h1>Hello!</h1>
-}
-
+import { useState } from "react";
+/* 
+  state Change - two ways
+  * 직접 값 넣어주기
+  * 함수 넣어주기
+*/
 function App() {
-  const [showing, setShowing] = useState();
-  const onClick = () => {
-    setShowing((prev) => !prev) 
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) => {
+    setToDo(event.target.value);
   }
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if(toDo === "") {
+      return;
+    }
+    setToDos((currentArray) => [...currentArray, toDo] );
+    setToDo("");
+  }
+  console.log(toDos);
   return (
     <div>
-      {showing ? <Hello /> : null}
-      <button onClick={onClick}>{showing ? "Hide" : "Show" }</button>
+      <h1>My To Do ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} value={toDo} type="text" placeholder="Write what to do..!"></input>
+        <button type="submit">Add to do</button>
+      </form>
+      <hr />
+      <ul>
+        {toDos.map((item, i) => {
+          return(
+            <li key={i}>{item.toUpperCase()}</li>
+          )
+        })}
+      </ul>
     </div>
   );
 }
