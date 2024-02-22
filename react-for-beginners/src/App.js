@@ -23,7 +23,7 @@ function App() {
   const handleCoinChanger = () => {
     setCount(Math.floor(budget / dollarForCoin))
   };
-  
+
   return (
     <>
       <h1>The Coins! ({coins.length})</h1>
@@ -52,6 +52,7 @@ function App() {
           </button>
           <p> {count} {count > 1 ? "coins" : "coin"} </p>
         </div>
+        
       )}
     </>
   );
