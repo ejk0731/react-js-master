@@ -52,7 +52,6 @@ function App() {
           </button>
           <p> {count} {count > 1 ? "coins" : "coin"} </p>
         </div>
-        
       )}
     </>
   );
