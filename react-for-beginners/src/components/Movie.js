@@ -15,6 +15,7 @@ function Movie({ coverImg, title, summary, genres }) {
   );
 }
 
+// test
 Movie.propTypes = {
   coverImg: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
